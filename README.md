@@ -1,2 +1,4 @@
 # Healthcare-Analytics-Dashboard
-A dashboard about the patients' Emergency Room visit
+A Power BI dashboard about the patients' Emergency Room visit
+
+## Dataset Description
