@@ -36,7 +36,7 @@ A Power BI dashboard about the patients' Emergency Room visits. Dax used in the 
 
 ## DAX used in this report
 
-*% Administrative Schedule = 
+- % Administrative Schedule = 
     DIVIDE(
         COUNTROWS(
             FILTER(
@@ -46,7 +46,7 @@ A Power BI dashboard about the patients' Emergency Room visits. Dax used in the 
         [Total Patients]
     )
 
-*% Female Visit = 
+- % Female Visit = 
 DIVIDE(
         CALCULATE(
             [Total Patients],
@@ -56,7 +56,7 @@ DIVIDE(
 )
 (similar dax used for Male visits)
 
-*% No Rating = 
+- % No Rating = 
     VAR _NoRatings = 
     CALCULATE(
             [Total Patients],
@@ -68,7 +68,7 @@ DIVIDE(
         [Total Patients]
     )
 
-*% Referred Patients = 
+- % Referred Patients = 
     VAR _FilterPatients = 
         CALCULATE(
             [Total Patients],
@@ -79,7 +79,7 @@ DIVIDE(
             _FilterPatients,
             [Total Patients]
         )
-*% Referred Patients = 
+- % Referred Patients = 
     VAR _FilterPatients = 
         CALCULATE(
             [Total Patients],
@@ -92,13 +92,13 @@ DIVIDE(
         )
 (similar dax used for unreferred patients)
 
-*Average Satisfaction Score = 
+- Average Satisfaction Score = 
     CALCULATE(
         AVERAGE('Patients Dataset'[patient_sat_score]),
         'Patients Dataset'[patient_sat_score]<>BLANK()
     )
 
-*% Non Administrative Schedule = 
+- % Non Administrative Schedule = 
     DIVIDE(
         COUNTROWS(
             FILTER(
@@ -108,4 +108,4 @@ DIVIDE(
         [Total Patients]
     )
     
-*Average Wait Time = AVERAGE('Patients Dataset'[patient_waittime])
+- Average Wait Time = AVERAGE('Patients Dataset'[patient_waittime])
