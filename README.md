@@ -1,5 +1,5 @@
 # Healthcare-Analytics-Dashboard
-A Power BI dashboard about the patients' Emergency Room visits. Dax used in the dashboard is provided
+A dynamic Power BI dashboard about the patients' Emergency Room visits. Dax used in the dashboard is provided
 
 ## Table of Contents
 - [Dashboard Overview](#dashboard-overview)
@@ -107,5 +107,32 @@ DIVIDE(
         ),
         [Total Patients]
     )
-    
+
+- HeatMap Caption = 
+    VAR _SelectedMeasure = 
+        SELECTEDVALUE(Parameter[Parameter Order])
+        RETURN
+        IF( _SelectedMeasure=0,
+        "The darkest GREEN on the scale denotes LOW wait time",
+        "Patients are more satisfied when darkest green shows on scale"
+        )
+- CF Max Point (Year) = 
+        VAR _PatientTable =
+            CALCULATETABLE(
+                ADDCOLUMNS(
+                    SUMMARIZE('Date','Date'[Year]),
+                    "@Total_Patients",[Total Patients]
+                ),
+                ALLSELECTED()
+            )
+        VAR _MinValue = MINX(_PatientTable,[@Total_Patients])
+        VAR _MaxValue = MAXX(_PatientTable,[@Total_Patients])
+        VAR _TotalPatients = [Total Patients]
+        RETURN
+        SWITCH(
+            TRUE(),
+            _TotalPatients = _MinValue,0,
+            _TotalPatients = _MaxValue,1
+        )
+- 
 - Average Wait Time = AVERAGE('Patients Dataset'[patient_waittime])
