@@ -134,5 +134,5 @@ DIVIDE(
             _TotalPatients = _MinValue,0,
             _TotalPatients = _MaxValue,1
         )
-- 
+  
 - Average Wait Time = AVERAGE('Patients Dataset'[patient_waittime])
